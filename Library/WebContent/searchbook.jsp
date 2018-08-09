@@ -46,6 +46,11 @@
 
 <form action="insertbook.do" method="post">
 	<input type="text" name="search">
+	<select name="opt">
+		<option value="1">bname</option>
+		<option value="2">writer</option>
+		<option value="3">publisher</option>
+	</select>
 	<input type="submit" value="input">
 </form>
 

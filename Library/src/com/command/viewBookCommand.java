@@ -15,7 +15,8 @@ public class viewBookCommand implements Command{
 		// TODO Auto-generated method stub
 	
 		String search = request.getParameter("search");
-		System.out.println(search);
+		String opt = request.getParameter("opt");
+		System.out.println(search + " "+opt);
 		bookDAO dao = bookDAO.getInstance();
 		List<bookDTO> list = dao.getbook("1", search);
 		

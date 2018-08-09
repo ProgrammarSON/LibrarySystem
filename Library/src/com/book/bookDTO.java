@@ -8,14 +8,28 @@ public class bookDTO {
 	String comments;
 	String publisher;
 	String amount;
+	String keyword;
+	int totalpage;
 	
+	
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public int getTotalpage() {
+		return totalpage;
+	}
+	public void setTotalpage(int totalpage) {
+		this.totalpage = totalpage;
+	}
 	public String getPublisher() {
 		return publisher;
 	}
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
-	}	
-	
+	}		
 	public String getBid() {
 		return bid;
 	}

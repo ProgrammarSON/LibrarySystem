@@ -36,23 +36,32 @@ public class bookDAO {
 		return connection;
 	}
 	
-	public List<bookDTO> getbook(String choice, String w) {
+	public List<bookDTO> getbook(String choice, String keyword) {
 		List<bookDTO> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		bookDTO dto = null;
-		String sql="SELECT bname, writer, location, amount, comments, publisher "
-					+"FROM books WHERE ";
-		String condition = "";
-		if(choice.equals("1")) condition = "bname like '%"+w+"%'";
-		else if(choice.equals("2")) condition = "writer like '%"+w+"%'";
-		else if(choice.equals("3")) condition = "publisher like '%" +w+"%'";
 		
-		sql = sql + condition;
+		String sql= "SELECT * "+ 
+					"FROM (SELECT rownum rank,bname, writer, location, amount, comments, publisher "+
+					"FROM ("+"SELECT rownum, bname, writer, location, amount, comments, publisher "
+							+"FROM books WHERE rownum <= ? AND ";
+		
+		
+		String condition = "";
+		if(choice.equals("1")) condition = "bname like '%"+keyword+"%'";
+		else if(choice.equals("2")) condition = "writer like '%"+keyword+"%'";
+		else if(choice.equals("3")) condition = "publisher like '%" +keyword+"%'";
+		
+		//condition = condition + ")) WHERE rank >= ?";
+		
+		sql = sql + (condition + ")) WHERE rank >= ?");
+		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
+			
 			rs = pstmt.executeQuery();
 						
 			while (rs.next()) {
@@ -65,6 +74,19 @@ public class bookDAO {
 				dto.setPublisher(rs.getString("publisher"));
 				list.add(dto);
 			}
+			
+			sql = "SELECT count(*) AS total FROM books "
+				  +"WHERE "+condition;
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setTotalpage(rs.getInt("total"));
+				list.add(dto);
+			}
+			
+			
 			
 		} catch (Exception e) {
 			// TODO: handle exception
