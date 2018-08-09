@@ -42,7 +42,15 @@
   </div>
 </nav>
 
-<div class=layer>
+<br><br>
+
+<form action="insertbook.do" method="post">
+	<input type="text" name="search">
+	<input type="submit" value="input">
+</form>
+
+
+<!-- <div class=layer> 임시 주석
 <nav class="navbar navbar-light bg-light">
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -68,7 +76,7 @@
       <a class="page-link" href="#">Next</a>
     </li>
   </ul>
-</div>
+</div>  -->
 
 <script src="./bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
 </body>

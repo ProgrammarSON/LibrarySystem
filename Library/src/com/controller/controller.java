@@ -55,14 +55,18 @@ public class controller extends HttpServlet {
 		String com = uri.substring(conPath.length());
 		
 		if(com.equals("/join.do")) {
-			command = new insertCommand();
+			command = new insertMemberCommand();
 			command.execute(request, response);
 			viewPage = "main.jsp";
+		}else if(com.equals("/insertbook.do")) {
+			command = new viewBookCommand();
+			//System.out.println(request.getParameter("search"));
+			command.execute(request, response);
+			viewPage = "viewsearch.jsp";
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request,response);
-	
 	}
 
 }

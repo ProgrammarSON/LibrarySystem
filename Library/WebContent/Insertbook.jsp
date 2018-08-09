@@ -42,7 +42,7 @@
 </nav>
 
 <div class=layer>
-<form action >
+<form action="insertbook.do" method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="exampleFormControlInput1">도서명</label>
     <input type="text" class="form-control">
@@ -57,13 +57,31 @@
    	<input type="text" class="form-control">
   </div>
   
+   <div class="form-group">
+    <label for="exampleFormControlSelect2">위치</label>
+   	<input type="text" class="form-control">
+  </div>
+  
+   <div class="form-group">
+    <label for="exampleFormControlSelect2">수량</label>
+   	<input type="text" class="form-control">
+  </div>
   
   <div class="form-group">
     <label for="exampleFormControlTextarea1">설명</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="60"></textarea>
   </div>
-  <span>파일 첨부 추가 예정</span><br><br>
+  
+  
+  
+  
+<!-- 	<div class="custom-file">
+       	<label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+    	<div class="invalid-feedback">Example invalid custom file feedback</div>
+  	</div>
   	
+   	<input type="file" name="fileFolder" id="fileFolder" value="File Upload" > -->
+	<br><br>  
 	<button class="btn btn-primary" type="submit">Input</button>
 	<input class="btn btn-primary" type="button" value="Cancel">
  
