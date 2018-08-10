@@ -15,7 +15,6 @@
   transform:translate(-50%, -50%)
 }
 </style>
-
 </head>
 <body>
 
@@ -47,9 +46,9 @@
 <form action="insertbook.do" method="post">
 	<input type="text" name="search">
 	<select name="opt">
-		<option value="1">bname</option>
-		<option value="2">writer</option>
-		<option value="3">publisher</option>
+		<option value="bname">책제목</option>
+		<option value="writer">저자</option>
+		<option value="publisher">출판사</option>
 	</select>
 	<input type="submit" value="input">
 </form>

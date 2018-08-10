@@ -17,7 +17,6 @@
 
 </head>
 <body>
-
 <div class=layer>
 <form action="join.do" method="post">
   <div class="form-group">

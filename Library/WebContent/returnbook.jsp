@@ -42,10 +42,10 @@
 
 
 	<div class=layer>
-	<form>
+	<form action ="returnbook.do" method="post">
   		<div class="form-group">
     	<label for="exampleFormControlInput1">도서코드</label>
-    	<input type="text" class="form-control">
+    	<input type="text" class="form-control" name="bid">
   		</div>
   		<button class="btn btn-primary" type="submit">Return</button>
   	</form>

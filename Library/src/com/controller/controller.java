@@ -63,6 +63,10 @@ public class controller extends HttpServlet {
 			//System.out.println(request.getParameter("search"));
 			command.execute(request, response);
 			viewPage = "viewsearch.jsp";
+		}else if(com.equals("/returnbook.do")) {
+			command = new returnBookCommand();
+			command.execute(request, response);
+			viewPage = "main.jsp";
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);

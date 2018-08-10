@@ -36,7 +36,7 @@ public class bookDAO {
 		return connection;
 	}
 	
-	public List<bookDTO> getbook(String choice, String keyword) {
+	public List<bookDTO> getbook(int page,String choice, String keyword) {
 		List<bookDTO> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -44,24 +44,27 @@ public class bookDAO {
 		bookDTO dto = null;
 		
 		String sql= "SELECT * "+ 
-					"FROM (SELECT rownum rank,bname, writer, location, amount, comments, publisher "+
+					"FROM (SELECT rownum AS rank,bname, writer, location, amount, comments, publisher "+
 					"FROM ("+"SELECT rownum, bname, writer, location, amount, comments, publisher "
-							+"FROM books WHERE rownum <= ? AND ";
+							+"FROM books WHERE rownum <="+ Integer.toString(page) + " AND ";
 		
 		
 		String condition = "";
-		if(choice.equals("1")) condition = "bname like '%"+keyword+"%'";
-		else if(choice.equals("2")) condition = "writer like '%"+keyword+"%'";
-		else if(choice.equals("3")) condition = "publisher like '%" +keyword+"%'";
 		
-		//condition = condition + ")) WHERE rank >= ?";
+		condition = choice+" like '%"+keyword+"%'";
+				
+		sql = sql + ( condition + ")) WHERE rank >= " + Integer.toString(page-9) );
 		
-		sql = sql + (condition + ")) WHERE rank >= ?");
-		
+		System.out.println(sql);
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			
+			//pstmt.setString(1, Integer.toString(page));
+			//pstmt.setString(2, choice);
+			//pstmt.setString(3, keyword);
+			//page = page -9;
+			//pstmt.setString(4, Integer.toString(page));
 			rs = pstmt.executeQuery();
 						
 			while (rs.next()) {
@@ -76,7 +79,7 @@ public class bookDAO {
 			}
 			
 			sql = "SELECT count(*) AS total FROM books "
-				  +"WHERE "+condition;
+				  +"WHERE "+ condition;
 			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -84,9 +87,7 @@ public class bookDAO {
 			if(rs.next()) {
 				dto.setTotalpage(rs.getInt("total"));
 				list.add(dto);
-			}
-			
-			
+			}			
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -104,4 +105,26 @@ public class bookDAO {
 		return list;
 	}
 	
+	public void returnBook(int id) {
+		
+		Connection conn = null;
+		
+		try {
+			conn = getConnection();		
+			CallableStatement cstmt = conn.prepareCall("{call state_proc(?,?)}");
+			cstmt.setInt(1, id);
+			cstmt.registerOutParameter(2, java.sql.Types.INTEGER);
+			
+			int cnt = cstmt.executeUpdate();
+			int check = cstmt.getInt(2);
+			
+			if(check < 0) System.out.println("No Data");
+			else System.out.println("Success");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }
