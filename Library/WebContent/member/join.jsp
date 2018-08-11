@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-<link rel = "stylesheet" href = "./bootstrap/css/bootstrap.min.css"/>
+<link rel = "stylesheet" href = "../bootstrap/css/bootstrap.min.css"/>
 <style>
   .layer{
    position:absolute;
@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class=layer>
-<form action="join.do" method="post">
+<form action="../join.do" method="post" name="reg_frm">
   <div class="form-group">
     <label for="exampleFormControlInput1">ID</label>
     <input type="text" class="form-control" name="id">
@@ -50,7 +50,7 @@
     <label for="exampleFormControlTextarea1">설명</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="60" name="a"></textarea>
   </div>
-  <input type="submit" value="입력">
+  <input type="submit" name ="sub" value="가입" ><!--  onclick="infoConfirm()" >-->
  </form>
  </div>
 </body>

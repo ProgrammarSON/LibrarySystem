@@ -57,7 +57,7 @@ public class controller extends HttpServlet {
 		if(com.equals("/join.do")) {
 			command = new insertMemberCommand();
 			command.execute(request, response);
-			viewPage = "main.jsp";
+			viewPage = "../member/check_join.jsp";
 		}else if(com.equals("/insertbook.do")) {
 			command = new viewBookCommand();
 			//System.out.println(request.getParameter("search"));
@@ -67,6 +67,10 @@ public class controller extends HttpServlet {
 			command = new returnBookCommand();
 			command.execute(request, response);
 			viewPage = "main.jsp";
+		}else if(com.equals("/login.do")) {
+			command = new loginMemberCommand();
+			command.execute(request, response);
+			viewPage = "check_login.jsp";
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);
