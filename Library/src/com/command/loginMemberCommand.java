@@ -32,8 +32,9 @@ public class loginMemberCommand implements Command
         
         else
         {
-        	session.setAttribute("sessionID", id);
+        	//session.setAttribute("sessionID", id);
         	request.setAttribute("state", 1);
+        	request.setAttribute("id",id);
         }      
         
         System.out.println(check);

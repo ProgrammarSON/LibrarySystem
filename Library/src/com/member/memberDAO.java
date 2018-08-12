@@ -145,5 +145,29 @@ public class memberDAO {
 		return ri;
 	}
 	
-	
+	public int updateMember(String id, String pw) {
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		int state=0;
+		
+		String sql = "UPDATE member SET pw=? WHERE id=?";
+				
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,pw);
+			pstmt.setString(2, id);
+			state = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}	
+		return state;
+	}	
 }

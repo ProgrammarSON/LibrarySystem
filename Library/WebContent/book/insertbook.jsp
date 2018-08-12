@@ -5,12 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel = "stylesheet" href = "./bootstrap/css/bootstrap.min.css"/>
+<link rel = "stylesheet" href = "../bootstrap/css/bootstrap.min.css"/>
 
 <style>
   .layer{
    position:absolute;
-   top:50%;
+   top:60%;
    left:50%;
    transform:translate(-50%, -50%)
   }
@@ -18,58 +18,37 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Yedam-Library</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">도서입력</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">도서검색</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">도서반납</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<jsp:include page="../view/header.jsp"></jsp:include>
 
 <div class=layer>
-<form action="insertbook.do" method="post" enctype="multipart/form-data">
+<form action="../insertbook.do" method="post"> <!--  enctype="multipart/form-data">-->
   <div class="form-group">
     <label for="exampleFormControlInput1">도서명</label>
-    <input type="text" class="form-control">
+    <input type="text" class="form-control" name="bname">
   </div>
   <div class="form-group">
     <label for="exampleFormControlSelect1">저자</label>
-    <input type="text" class="form-control">
+    <input type="text" class="form-control" name="writer">
   </div>
   
   <div class="form-group">
     <label for="exampleFormControlSelect2">출판사</label>
-   	<input type="text" class="form-control">
+   	<input type="text" class="form-control" name="publisher">
   </div>
   
    <div class="form-group">
     <label for="exampleFormControlSelect2">위치</label>
-   	<input type="text" class="form-control">
+   	<input type="text" class="form-control" name="location">
   </div>
   
    <div class="form-group">
     <label for="exampleFormControlSelect2">수량</label>
-   	<input type="text" class="form-control">
+   	<input type="text" class="form-control" name="amount">
   </div>
   
   <div class="form-group">
     <label for="exampleFormControlTextarea1">설명</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="60"></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="60" name="comments"></textarea>
   </div>
   
   
@@ -81,8 +60,8 @@
   	</div>
   	
    	<input type="file" name="fileFolder" id="fileFolder" value="File Upload" > -->
-	<br><br>  
-	<button class="btn btn-primary" type="submit">Input</button>
+	<br>
+	<input class="btn btn-primary" type="submit" value="Insert">
 	<input class="btn btn-primary" type="button" value="Cancel">
  
 </form>

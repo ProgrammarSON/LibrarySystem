@@ -4,6 +4,7 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
 	int state = (int)request.getAttribute("state");
+	String id = request.getParameter("id");
 %>
 
 <%
@@ -26,9 +27,12 @@
 %>
 			<script language="javascript">
 				alert("로그인 되었습니다.");
-				document.location.href="main.jsp";
+				//document.location.href="main.jsp";
 			</script>
 <%
+		session.setAttribute("id",id);
+		session.setAttribute("ValidMem", "yes");
+		response.sendRedirect("main.jsp");
 		}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

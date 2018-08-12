@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="./view/header.jsp"></jsp:include>
 	<table class="table" border="1">
 		<c:forEach items="${list}" var="dto">
 		<tr>

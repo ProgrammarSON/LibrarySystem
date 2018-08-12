@@ -13,8 +13,9 @@
    left:50%;
    transform:translate(-50%, -50%)
   }
-</style>
+ </style>
 
+<script language="JavaScript" src="members.js" ></script>
 </head>
 <body>
 <div class=layer>
@@ -50,7 +51,8 @@
     <label for="exampleFormControlTextarea1">설명</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="60" name="a"></textarea>
   </div>
-  <input type="submit" name ="sub" value="가입" ><!--  onclick="infoConfirm()" >-->
+  <input type="submit" name ="sub" value="가입" onclick="infoConfirm()" >
+  <input type="reset" value="취소" onclick="javascript:window.location='../index.jsp'">
  </form>
  </div>
 </body>

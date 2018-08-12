@@ -14,9 +14,9 @@ public class viewBookCommand implements Command{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 			
+		int page,totalpage,startpage,endpage;
 		String search = request.getParameter("search");
 		String opt = request.getParameter("opt");
-		int page,totalpage,startpage,endpage;
 		String temp = request.getParameter("page");
 		
 		if(temp == null) page = 1;
@@ -26,6 +26,7 @@ public class viewBookCommand implements Command{
 		bookDAO dao = bookDAO.getInstance();
 		
 		List<bookDTO> list = dao.getbook(page*10,opt,search);
+		if(list == null) return;
 		////////////////////////////////////////////////
 		int size = list.size()-1;
 		totalpage = list.get(size).getTotalpage();

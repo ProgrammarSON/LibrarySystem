@@ -9,8 +9,16 @@ public class bookDTO {
 	String publisher;
 	String amount;
 	String keyword;
+	String state;
+	String date;
 	int totalpage;
 	
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	
 	public String getKeyword() {
 		return keyword;

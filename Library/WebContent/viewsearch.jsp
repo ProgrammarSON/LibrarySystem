@@ -19,6 +19,8 @@ String opt = request.getParameter("opt");
 </head>
 <body>
 
+<jsp:include page="./view/header.jsp"></jsp:include>
+
 <table class="table" border="1">
 		<c:forEach items="${list}" var="dto">
 		<tr>
@@ -38,22 +40,22 @@ String opt = request.getParameter("opt");
     <% if(startpage == 1) { %>
 
     <li class="page-item">
-      <a class="page-link" href="insertbook.do?page=1&search=<%=keyword%>&opt=<%=opt%> " tabindex="-1">Previous</a>
+      <a class="page-link" href="searchbook.do?page=1&search=<%=keyword%>&opt=<%=opt%> " tabindex="-1">Previous</a>
     </li>
     <%} else {%>
     <li class="page-item">
-      <a class="page-link" href="insertbook.do?page=<%=startpage-1 %>&search=<%=keyword%>&opt=<%=opt%>" tabindex="-1">Previous</a>
+      <a class="page-link" href="searchbook.do?page=<%=startpage-1 %>&search=<%=keyword%>&opt=<%=opt%>" tabindex="-1">Previous</a>
     </li>
     <%}%>
     <%
     	for(int i=startpage; i<=endpage; i++){
     %> 
-    		<li class="page-item"><a class="page-link" href="insertbook.do?page=<%=i%>&search=<%=keyword%>&opt=<%=opt%>"><%=i%></a></li>
+    		<li class="page-item"><a class="page-link" href="searchbook.do?page=<%=i%>&search=<%=keyword%>&opt=<%=opt%>"><%=i%></a></li>
     	<%}%>
     
     <% if(endpage != totalpage) endpage++;%>
     <li class="page-item">
-      <a class="page-link" href="insertbook.do?page=<%=endpage%>&search=<%=keyword%>&opt=<%=opt%>">Next</a>
+      <a class="page-link" href="searchbook.do?page=<%=endpage%>&search=<%=keyword%>&opt=<%=opt%>">Next</a>
     </li>
   </ul>
 </body>

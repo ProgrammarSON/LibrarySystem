@@ -17,19 +17,20 @@
 		</script>
 <%
 		} else {
-			if(id_state == memberDAO.MEMBER_JOIN_SUCCESS) {
+			if(insert_state == memberDAO.MEMBER_JOIN_SUCCESS) {
 				session.setAttribute("id", id);
 %>
 			<script language="javascript">
 				alert("회원가입을 축하 합니다.");
-				document.location.href="../index.jsp";
+				document.location.href="index.jsp";				
 			</script>
-<%
+			
+<%			//response.sendRedirect("main.jsp");				
 			} else {
 %>
 			<script language="javascript">
 				alert("회원가입에 실패했습니다.");
-				document.location.href="../index.jsp";
+				document.location.href="index.jsp";
 			</script>
 <%
 			}
