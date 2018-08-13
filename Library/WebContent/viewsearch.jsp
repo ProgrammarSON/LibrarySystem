@@ -23,12 +23,24 @@ String opt = request.getParameter("opt");
 		</tr>
 		<c:forEach items="${list}" var="dto">
 		<tr>
+		
+		<%if(opt.equals("bname")){ %>
+			<td style="color:red">${dto.bname}</td>
+		<%}else{ %>
 			<td>${dto.bname}</td>
+		<%}if(opt.equals("writer")){ %>
+			<td style="color:red">${dto.writer}</td>
+		<%}else{ %>
 			<td>${dto.writer}</td>
+		<%}%>
 			<td>${dto.location}</td>
 			<td>${dto.amount}</td>
 			<td>${dto.comments}</td>
+		<%if(opt.equals("publisher")){ %>	
+			<td style="color:red">${dto.publisher}</td>
+		<%}else { %>
 			<td>${dto.publisher}</td>
+		<%} %>
 		</tr>
 		</c:forEach>
 	</table>

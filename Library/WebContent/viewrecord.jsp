@@ -3,7 +3,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.book.*" %>
 <jsp:include page="header.jsp"></jsp:include>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%
 int startpage = (int)request.getAttribute("startpage");
@@ -28,8 +27,14 @@ int endpage = (int)request.getAttribute("endpage");
          <td>${dto.bname}</td>
          <td>${dto.writer}</td>
          <td>${dto.publisher}</td>
-         <td>${dto.state}</td>
-         <td>${dto.date}</td>
+        
+        	<c:if test="${dto.state eq 'return'}"> 
+         		<td style="color:red">${dto.state}</td>
+         	</c:if>
+         	<c:if test="${dto.state eq 'rental'}"> 
+         		<td style="color:green">${dto.state}</td>
+         	</c:if>
+        <td>${dto.date}</td>
       </tr>
       </c:forEach>
 </table><br><br>
