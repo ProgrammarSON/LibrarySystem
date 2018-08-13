@@ -42,32 +42,28 @@ public class bookDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		bookDTO dto = null;
-		
-		String sql= "SELECT * "+ 
-					"FROM (SELECT rownum AS rank,bname, writer, location, amount, comments, publisher "+
-					"FROM ("+"SELECT rownum, bname, writer, location, amount, comments, publisher "
-							+"FROM books WHERE rownum <="+ Integer.toString(page) + " AND ";
-		
-		
+		String sql = "";
 		String condition = "";
-		
-		condition = choice+" like '%"+keyword+"%'";
+		String total="";
+		int cnt=0;
 				
-		sql = sql + ( condition + ")) WHERE rank >= " + Integer.toString(page-9) );
 		
-		System.out.println(sql);
 		try {
 			conn = getConnection();
+		
+			condition = choice+" like '%"+keyword+"%'";
+			
+			sql = "SELECT count(*) AS total FROM books "
+					  +"WHERE "+ condition;
+				
 			pstmt = conn.prepareStatement(sql);
-			
-			//pstmt.setString(1, Integer.toString(page));
-			//pstmt.setString(2, choice);
-			//pstmt.setString(3, keyword);
-			//page = page -9;
-			//pstmt.setString(4, Integer.toString(page));
 			rs = pstmt.executeQuery();
+				
+			if(rs.next()) {
+				total = rs.getString("total");
+			}
 			
-		/*	if(rs == null) {
+			if(total.equals("0")) {
 				dto = new bookDTO();
 				dto.setBname(" ");
 				dto.setWriter(" ");
@@ -78,9 +74,21 @@ public class bookDAO {
 				list.add(dto);
 				dto.setTotalpage(1);
 				list.add(dto);
-				return list;
-			}*/
+			}else {			
+			
+			sql= "SELECT * "+ 
+					"FROM (SELECT rownum AS rank,bname, writer, location, amount, comments, publisher "+
+					"FROM ("+"SELECT rownum, bname, writer, location, amount, comments, publisher "
+							+"FROM books WHERE rownum <="+ Integer.toString(page) + " AND ";
+		
+				
+			sql = sql + ( condition + ")) WHERE rank >= " + Integer.toString(page-9) );
+			
+			pstmt = conn.prepareStatement(sql);
 						
+			rs = pstmt.executeQuery();
+			
+									
 			while (rs.next()) {
 				dto = new bookDTO();
 				String bname = rs.getString("bname");
@@ -103,20 +111,9 @@ public class bookDAO {
 				dto.setPublisher(publisher);
 				list.add(dto);
 			}
-			
-			sql = "SELECT count(*) AS total FROM books "
-				  +"WHERE "+ condition;
-			
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				String total = rs.getString("total");
-				System.out.println(total);
-				dto.setTotalpage(Integer.parseInt(total));
-				list.add(dto);
-			}			
-			
+			dto.setTotalpage(Integer.parseInt(total));
+			list.add(dto);
+		}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
