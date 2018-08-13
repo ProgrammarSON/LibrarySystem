@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="com.member.*" %>
 <%
 	String id = (String)session.getAttribute("id");
@@ -8,7 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel = "stylesheet" href = "../bootstrap/css/bootstrap.min.css"/>
 <style>
   .layer{
@@ -25,27 +25,27 @@
 <form action="../modifymember.do" method="post" name="reg_frm">
  
  <div class="form-group">
-    <label for="exampleFormControlSelect1">¾ÆÀÌµð</label>
+    <label for="exampleFormControlSelect1">ì•„ì´ë””</label>
     <input type="text" class="form-control" name="id" value=<%=id %>>
   </div>
  
   <div class="form-group">
-    <label for="exampleFormControlSelect1">ÆÐ½º¿öµå</label>
+    <label for="exampleFormControlSelect1">íŒ¨ìŠ¤ì›Œë“œ</label>
     <input type="password" class="form-control" name="password">
   </div>
   
   <div class="form-group">
-    <label for="exampleFormControlSelect2">ÆÐ½º¿öµå È®ÀÎ</label>
+    <label for="exampleFormControlSelect2">íŒ¨ìŠ¤ì›Œë“œ í™•ì¸</label>
    	<input type="password" class="form-control" name="pcheck">
   </div> 
  
   
   <div class="form-group">
-    <label for="exampleFormControlTextarea1">¼³¸í</label>
+    <label for="exampleFormControlTextarea1">ì„¤ëª…</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="60" name="a"></textarea>
   </div>
-  <input type="submit" name ="sub" value="¼öÁ¤" onclick="updateInfoConfirm()" >
-  <input type="reset" value="Ãë¼Ò" onclick="javascript:window.location='../main.jsp'">
+  <input type="submit" name ="sub" value="ìˆ˜ì •" onclick="updateInfoConfirm()" >
+  <input type="reset" value="ì·¨ì†Œ" onclick="javascript:window.location='../main.jsp'">
  </form>
  </div>
 

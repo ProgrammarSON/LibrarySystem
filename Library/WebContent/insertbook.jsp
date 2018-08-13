@@ -1,27 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel = "stylesheet" href = "../bootstrap/css/bootstrap.min.css"/>
+<jsp:include page="header.jsp"></jsp:include>
 
-<style>
-  .layer{
-   position:absolute;
-   top:60%;
-   left:50%;
-   transform:translate(-50%, -50%)
-  }
-</style>
-</head>
-<body>
+<%
+	if(session.getAttribute("ValidMem") == null){
+%>
+	<script language="javascript">
+		alert("로그인 해주세요.");
+		document.location.href="index.jsp";
+	</script>
+	
+<%} %>
 
-<jsp:include page="../view/header.jsp"></jsp:include>
-
-<div class=layer>
-<form action="../insertbook.do" method="post"> <!--  enctype="multipart/form-data">-->
+<div class="layer">
+<form action="insertbook.do" method="post"> <!--  enctype="multipart/form-data">-->
   <div class="form-group">
     <label for="exampleFormControlInput1">도서명</label>
     <input type="text" class="form-control" name="bname">
@@ -52,8 +44,6 @@
   </div>
   
   
-  
-  
 <!-- 	<div class="custom-file">
        	<label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
     	<div class="invalid-feedback">Example invalid custom file feedback</div>
@@ -61,10 +51,10 @@
   	
    	<input type="file" name="fileFolder" id="fileFolder" value="File Upload" > -->
 	<br>
-	<input class="btn btn-primary" type="submit" value="Insert">
-	<input class="btn btn-primary" type="button" value="Cancel">
- 
+	<button type="submit" class="btn btn-success">입력하기</button>
+	<button type="reset" class="btn btn-secondary">다시 작성</button>
+	<button type="button" class="btn btn-danger">취소</button> 
 </form>
 </div>
-</body>
-</html>
+
+<jsp:include page="footer.jsp"></jsp:include>

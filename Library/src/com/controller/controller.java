@@ -83,7 +83,9 @@ public class controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "viewsearch.jsp";
 		}else if(com.equals("/recordbook.do")) {
-			
+			command = new recordBookCommand();
+			command.execute(request, response);
+			viewPage ="viewrecord.jsp";
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);

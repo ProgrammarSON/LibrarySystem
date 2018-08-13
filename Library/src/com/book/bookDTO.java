@@ -11,8 +11,15 @@ public class bookDTO {
 	String keyword;
 	String state;
 	String date;
+	
 	int totalpage;
 	
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}	
 	public String getState() {
 		return state;
 	}

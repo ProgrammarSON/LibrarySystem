@@ -1,37 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel = "stylesheet" href = "../bootstrap/css/bootstrap.min.css"/>
+<jsp:include page="header.jsp"/>
 
-<style>
-.layer{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%)
-}
-</style>
-</head>
-<body>
+<%
+	if(session.getAttribute("ValidMem") == null){
+%>
+	<script language="javascript">
+		alert("로그인 해주세요.");
+		document.location.href="index.jsp";
+	</script>
+	
+<%} %>
 
-<jsp:include page="../view/header.jsp"></jsp:include>
-<br><br>
-
-<form action="../searchbook.do" method="post">
-	<input type="text" name="search">
-	<select name="opt">
-		<option value="bname">책제목</option>
-		<option value="writer">저자</option>
-		<option value="publisher">출판사</option>
-	</select>
-	<input type="submit" class="btn" value="input">
-	<input type="button" class="btn" value="Cancel" onclick="location.href='main.jsp'">
-</form>
-
+<div class="layer">
+	<form action="searchbook.do" method="post">
+		<div class="form-group row">
+			<label for="bid" class="w-100">도서 검색</label>
+			<div class="col-8">
+				<input type="text" class="form-control" name="search">
+			</div>
+			<div class="col-4">
+				<select name="opt" class="form-control">
+					<option value="bname">책 제목</option>
+					<option value="writer">저자</option>
+					<option value="publisher">출판사</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-success">검색</button>
+			<button type="button" class="btn btn-success" onclick="location.href='main.jsp'">취소</button>
+		</div>
+	</form>
+</div>
 
 <!-- <div class=layer> 임시 주석
 <nav class="navbar navbar-light bg-light">
@@ -61,6 +62,4 @@
   </ul>
 </div>  -->
 
-<script src="./bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
-</body>
-</html>
+<jsp:include page="footer.jsp"/>

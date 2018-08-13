@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:include page="header.jsp"></jsp:include>
+
 <%
 	int state = (int)request.getAttribute("state");
 %>
@@ -9,25 +10,16 @@
 	if(state == 1) {
 %>
 	<script language="javascript">
-		alert("¹İ³³ ¿Ï·á");
-		document.location.href="./book/returnbook.jsp";
+		alert("ë°˜ë‚© ì™„ë£Œ");
+		document.location.href="./returnbook.jsp";
 	</script>
 <%
 	}else { 
 %>
 	<script language="javascript">
-		alert("Ã¥ÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
-		document.location.href="./book/rentalbook.jsp";
+		alert("ì±…ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+		document.location.href="./rentalbook.jsp";
 	</script>
 <%}%>
-    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
 
-</body>
-</html>
+<jsp:include page="footer.jsp"></jsp:include>

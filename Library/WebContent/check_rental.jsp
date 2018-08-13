@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:include page="header.jsp"></jsp:include>
+
 <%
 	int state = (int)request.getAttribute("state");
 %>
@@ -8,31 +10,22 @@
 	if(state < 0) {
 %>
 	<script language="javascript">
-		alert("Àü±Ç ´ë¿© ÁßÀÔ´Ï´Ù.");
-		document.location.href="./book/rentalbook.jsp";
+		alert("ì „ê¶Œ ëŒ€ì—¬ ì¤‘ì…ë‹ˆë‹¤.");
+		document.location.href="./rentalbook.jsp";
 	</script>
 <%
 	}else if(state == 0){ 
 %>
 	<script language="javascript">
-		alert("Ã¥ÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.");
-		document.location.href="./book/rentalbook.jsp";
+		alert("ì±…ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+		document.location.href="./rentalbook.jsp";
 	</script>
 <%	}else { %>
 	<script language="javascript">
-		alert("´ë¿©°¡ ¿Ï·á µÇ¾ú½À´Ï´Ù.");
-		document.location.href="./book/rentalbook.jsp";
+		alert("ëŒ€ì—¬ê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+		document.location.href="./rentalbook.jsp";
 	</script>
 	
-<%	} %>	
+<%}%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+<jsp:include page="footer.jsp"></jsp:include>

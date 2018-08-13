@@ -228,5 +228,72 @@ public class bookDAO {
 		return check;
 	}
 	
+	   public List<bookDTO>getRecord(int page) {
+		      List<bookDTO> list = new ArrayList<>();
+		      bookDTO dto = null;
+		      Connection conn = null;
+		      PreparedStatement pstmt = null;
+		      ResultSet rs = null;
+		      String total = "";
+		      String sql = "SELECT count(*) AS total FROM record";
+		      
+		      try {
+		         conn = getConnection();
+		         pstmt = conn.prepareStatement(sql);
+		         rs = pstmt.executeQuery();
+		         
+		         if(rs.next()) {
+		            total = rs.getString("total");
+		         }
+		         
+		         if(total.equals("0")) {
+		            dto = new bookDTO();
+		            dto.setBid(" ");
+		            dto.setBname(" ");
+		            dto.setWriter(" ");
+		            dto.setPublisher(" ");
+		            dto.setState(" ");
+		            dto.setDate(" ");
+		            list.add(dto);
+		            dto.setTotalpage(1);
+		            list.add(dto);
+		         }else {
+		            sql= "SELECT * "+ 
+		                  "FROM (SELECT rownum AS rank,bid,bname, writer, publisher,state, bdate "+
+		                  "FROM ("+"SELECT rownum, bid, bname, writer, publisher, state, bdate "
+		                        +"FROM record WHERE rownum <="+ Integer.toString(page) + ")) "
+		                +"WHERE rank >= " + Integer.toString(page-9);
+		            System.out.println(sql);
+		            pstmt = conn.prepareStatement(sql);
+		            rs = pstmt.executeQuery();
+		            
+		            while(rs.next()) {
+		               dto = new bookDTO();
+		               dto.setBid(rs.getString("bid"));
+		               dto.setBname(rs.getString("bname"));
+		               dto.setWriter(rs.getString("writer"));
+		               dto.setPublisher(rs.getString("publisher"));
+		               dto.setState(rs.getString("state"));
+		               dto.setDate(rs.getString("bdate"));
+		               list.add(dto);
+		            }
+		            dto.setTotalpage(Integer.parseInt(total));
+		            list.add(dto);
+		         }
+		      } catch (SQLException e) {
+		         // TODO Auto-generated catch block
+		         e.printStackTrace();
+		      }finally {
+		         try {
+		            if(rs != null) rs.close();
+		            if(pstmt != null) pstmt.close();
+		            if(conn != null) conn.close();
+		         } catch (Exception e2) {
+		            // TODO: handle exception
+		            e2.printStackTrace();
+		         }
+		      }
+		      return list;
+		   }
 	
 }

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
 	int state = (int)request.getAttribute("state");
 %>
@@ -8,20 +8,20 @@
 	if(state == 0) {
 %>
 		<script language="javascript">
-			alert("È¸¿øÁ¤º¸ ¼öÁ¤¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù");
+			alert("íšŒì›ì •ë³´ ìˆ˜ì •ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤");
 			//document.location.href="../member/modifymember.jsp";
 			history.go(-1);
 		</script>
 <%} else {%>
 		<script language="javascript">
-			alert("È¸¿øÁ¤º¸ ¼öÁ¤¿¡ ¼º°øÇÏ¿´½À´Ï´Ù");
+			alert("íšŒì›ì •ë³´ ìˆ˜ì •ì— ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤");
 			document.location.href="main.jsp";
 		</script>
 <%}%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>

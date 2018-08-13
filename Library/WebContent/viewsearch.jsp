@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:include page="header.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 
 <%
 int startpage = (int)request.getAttribute("startpage");
@@ -10,18 +10,17 @@ int endpage = (int)request.getAttribute("endpage");
 String keyword = request.getParameter("search");
 String opt = request.getParameter("opt"); 
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel = "stylesheet" href = "./bootstrap/css/bootstrap.min.css"/>
-</head>
-<body>
 
-<jsp:include page="./view/header.jsp"></jsp:include>
-
-<table class="table" border="1">
+<div class="container">
+	<table class="table table-hover mt-3">
+		<tr>
+			<th scope="col">책 제목</th>
+			<th scope="col">저자</th>
+			<th scope="col">위치</th>
+			<th scope="col">수량</th>
+			<th scope="col">설명</th>
+			<th scope="col">출판사</th>
+		</tr>
 		<c:forEach items="${list}" var="dto">
 		<tr>
 			<td>${dto.bname}</td>
@@ -32,31 +31,31 @@ String opt = request.getParameter("opt");
 			<td>${dto.publisher}</td>
 		</tr>
 		</c:forEach>
-</table><br><br>
+	</table>
 
+	<ul class="pagination justify-content-center mt-5">
+	    
+	<% if(startpage == 1) { %>
+	
+	<li class="page-item">
+	  <a class="page-link" href="searchbook.do?page=1&search=<%=keyword%>&opt=<%=opt%> " tabindex="-1">Previous</a>
+	</li>
+	<%} else {%>
+	<li class="page-item">
+	  <a class="page-link" href="searchbook.do?page=<%=startpage-1 %>&search=<%=keyword%>&opt=<%=opt%>" tabindex="-1">Previous</a>
+	</li>
+	<%}%>
+	<%
+	for(int i=startpage; i<=endpage; i++){
+	%> 
+	<li class="page-item"><a class="page-link" href="searchbook.do?page=<%=i%>&search=<%=keyword%>&opt=<%=opt%>"><%=i%></a></li>
+	<%}%>
+	
+	<% if(endpage != totalpage) endpage++;%>
+	<li class="page-item">
+	  <a class="page-link" href="searchbook.do?page=<%=endpage%>&search=<%=keyword%>&opt=<%=opt%>">Next</a>
+	    </li>
+	</ul>
+</div>
 
- <ul class="pagination justify-content-center">
-    
-    <% if(startpage == 1) { %>
-
-    <li class="page-item">
-      <a class="page-link" href="searchbook.do?page=1&search=<%=keyword%>&opt=<%=opt%> " tabindex="-1">Previous</a>
-    </li>
-    <%} else {%>
-    <li class="page-item">
-      <a class="page-link" href="searchbook.do?page=<%=startpage-1 %>&search=<%=keyword%>&opt=<%=opt%>" tabindex="-1">Previous</a>
-    </li>
-    <%}%>
-    <%
-    	for(int i=startpage; i<=endpage; i++){
-    %> 
-    		<li class="page-item"><a class="page-link" href="searchbook.do?page=<%=i%>&search=<%=keyword%>&opt=<%=opt%>"><%=i%></a></li>
-    	<%}%>
-    
-    <% if(endpage != totalpage) endpage++;%>
-    <li class="page-item">
-      <a class="page-link" href="searchbook.do?page=<%=endpage%>&search=<%=keyword%>&opt=<%=opt%>">Next</a>
-    </li>
-  </ul>
-</body>
-</html>
+<jsp:include page="footer.jsp"/>

@@ -1,17 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel = "stylesheet" href = "./bootstrap/css/bootstrap.min.css"/>
-</head>
-<body>
-	<input type="button" class="btn" value="Ã¥ ÀÔ·Â" onclick="location.href='./book/insertbook.jsp'">
-	<input type="button" class="btn" value="Ã¥ ´ë¿©" onclick="location.href='./book/rentalbook.jsp'">
-	<input type="button" class="btn" value="Ã¥ ¹İ³³" onclick="location.href='./book/returnbook.jsp'">
-	<input type="button" class="btn" value="Ã¥ °Ë»ö" onclick="location.href='./book/searchbook.jsp'">
-	<input type="button" class="btn" value="È¸¿øÁ¤º¸ ¼öÁ¤" onclick="location.href='./member/modifymember.jsp'">
-	<input type="button" class="btn" value="·Î±×¾Æ¿ô" onclick="location.href='logout.jsp'">	
-</body>
-</html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:include page="header.jsp"/>
+
+<div class="jumbotron">
+	<div class="layer">
+		<h1 class="display-4">Welcome to Yedam Library!</h1>
+		<p class="lead">ì˜ˆë‹´ ë„ì„œê´€ì…ë‹ˆë‹¤. ë„ì„œ ì„œë¹„ìŠ¤ë¥¼ ì´ìš©í•´ë³´ì„¸ìš”.</p>
+		<!-- <hr class="my-4">
+		<p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
+		<!-- <a class="btn btn-primary btn-lg" href="index.jsp" role="button">ë” ì•Œì•„ë³´ê¸°</a> -->
+	</div>
+</div>
+
+<jsp:include page="footer.jsp"/>
