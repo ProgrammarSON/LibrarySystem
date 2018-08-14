@@ -53,7 +53,7 @@
 	<br>
 	<button type="submit" class="btn btn-success">입력하기</button>
 	<button type="reset" class="btn btn-secondary">다시 작성</button>
-	<button type="button" class="btn btn-danger">취소</button> 
+	<button type="button" class="btn btn-danger" onclick="document.location.href='main.jsp'">취소</button> 
 </form>
 </div>
 
