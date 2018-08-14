@@ -18,6 +18,7 @@
    transform:translate(-50%, -50%)
   }
  </style>
+ <script language="JavaScript" src="members.js" ></script> 
  </head>
 <body>
 

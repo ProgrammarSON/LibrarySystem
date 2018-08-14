@@ -32,13 +32,13 @@ function infoConfirm() {
 function updateInfoConfirm() {
 	if(document.reg_frm.password.value == "") {
 		alert("패스워드를 입력하세요.");
-		document.reg_frm.pw.focus();
+		document.reg_frm.password.focus();
 		return;
 	}
 	
 	if(document.reg_frm.password.value != document.reg_frm.pcheck.value) {
 		alert("패스워드가 일치하지 않습니다.");
-		reg_frm.pw.focus();
+		document.location.href="join.jsp";
 		return;
 	}	
 	

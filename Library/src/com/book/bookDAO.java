@@ -47,7 +47,6 @@ public class bookDAO {
 		String total="";
 		int cnt=0;
 				
-		
 		try {
 			conn = getConnection();
 		
@@ -77,8 +76,8 @@ public class bookDAO {
 			}else {			
 			
 			sql= "SELECT * "+ 
-					"FROM (SELECT rownum AS rank,bname, writer, location, amount, comments, publisher "+
-					"FROM ("+"SELECT rownum, bname, writer, location, amount, comments, publisher "
+					"FROM (SELECT rownum AS rank,bid,bname, writer, location, amount, comments, publisher "+
+					"FROM ("+"SELECT rownum, bid,bname, writer, location, amount, comments, publisher "
 							+"FROM books WHERE rownum <="+ Integer.toString(page) + " AND ";
 		
 				
@@ -91,6 +90,7 @@ public class bookDAO {
 									
 			while (rs.next()) {
 				dto = new bookDTO();
+				dto.setBid(rs.getString("bid"));
 				String bname = rs.getString("bname");
 				if(bname == null) bname = " ";
 				String writer = rs.getString("writer");
@@ -295,5 +295,42 @@ public class bookDAO {
 		      }
 		      return list;
 		   }
-	
+	   public bookDTO getInfobook(String id) {
+		   Connection conn=null;
+		   PreparedStatement pstmt = null;
+		   ResultSet rs = null;
+		   bookDTO dto = null;
+		   String sql = "SELECT bname, writer, publisher, location, amount,comments FROM books "
+		   				+"WHERE	bid=?";
+		  try {
+		   conn = getConnection();
+		   pstmt = conn.prepareStatement(sql);
+		   pstmt.setString(1, id);
+		   rs = pstmt.executeQuery();
+		   
+		   if(rs.next()) {
+			   dto = new bookDTO();
+			   dto.setBname(rs.getString("bname"));
+			   dto.setWriter(rs.getString("writer"));
+			   dto.setPublisher(rs.getString("publisher"));
+			   dto.setLocation(rs.getString("location"));
+			   dto.setAmount(rs.getString("amount"));
+			   dto.setComments(rs.getString("comments"));
+		   }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+	         try {
+		            if(rs != null) rs.close();
+		            if(pstmt != null) pstmt.close();
+		            if(conn != null) conn.close();
+		      } catch (Exception e2) {
+		            // TODO: handle exception
+		            e2.printStackTrace();
+		         }
+		   }
+		   
+		return dto;  
+	  }	
 }

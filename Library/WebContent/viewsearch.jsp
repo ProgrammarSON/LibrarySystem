@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.book.*" %>     
 <jsp:include page="header.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -8,7 +10,8 @@ int startpage = (int)request.getAttribute("startpage");
 int totalpage = (int)request.getAttribute("totalpage");;
 int endpage = (int)request.getAttribute("endpage");
 String keyword = request.getParameter("search");
-String opt = request.getParameter("opt"); 
+String opt = request.getParameter("opt");
+List<bookDTO> bookinfo = (List<bookDTO>)request.getAttribute("list");
 %>
 
 <div class="container">
@@ -25,9 +28,9 @@ String opt = request.getParameter("opt");
 		<tr>
 		
 		<%if(opt.equals("bname")){ %>
-			<td style="color:red">${dto.bname}</td>
+			<td style="color:red"><a href="viewbooks.jsp?id=${dto.bid}">${dto.bname}</a></td>
 		<%}else{ %>
-			<td>${dto.bname}</td>
+			<td><a href="viewbooks.jsp?id=${dto.bid}">${dto.bname}</a></td>
 		<%}if(opt.equals("writer")){ %>
 			<td style="color:red">${dto.writer}</td>
 		<%}else{ %>

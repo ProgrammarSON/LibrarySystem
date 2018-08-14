@@ -39,8 +39,7 @@ public class viewBookCommand implements Command{
 		startpage = ((page-1)/10) * 10 +1;
 		endpage = startpage + 9;
 		if(endpage > totalpage) endpage = totalpage;
-		
-		
+				
 		request.setAttribute("list",list);
 		request.setAttribute("startpage", startpage);
 		request.setAttribute("totalpage", totalpage);
