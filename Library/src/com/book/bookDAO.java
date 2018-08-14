@@ -261,8 +261,8 @@ public class bookDAO {
 		            sql= "SELECT * "+ 
 		                  "FROM (SELECT rownum AS rank,bid,bname, writer, publisher,state, bdate "+
 		                  "FROM ("+"SELECT rownum, bid, bname, writer, publisher, state, bdate "
-		                        +"FROM record WHERE rownum <="+ Integer.toString(page) + ")) "
-		                +"WHERE rank >= " + Integer.toString(page-9);
+		                        +"FROM record WHERE rownum <="+ total + " ORDER BY bdate DESC)) "
+		                  +"WHERE rank between " + Integer.toString(page-9) + " AND "+page;
 		            System.out.println(sql);
 		            pstmt = conn.prepareStatement(sql);
 		            rs = pstmt.executeQuery();
@@ -295,5 +295,33 @@ public class bookDAO {
 		      }
 		      return list;
 		   }
+	   
+	   public int deleteBook(String id) {
+		   Connection conn = null;
+		   PreparedStatement pstmt = null;
+		   String sql = "DELETE FROM books WHERE bid=?";
+		   int check = 0;
+		   
+		   try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			check = pstmt.executeUpdate();
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+	         try {
+		            if(pstmt != null) pstmt.close();
+		            if(conn != null) conn.close();
+		         } catch (Exception e2) {
+		            // TODO: handle exception
+		            e2.printStackTrace();
+		         }
+		      }
+		   return check;	   
+		   
+	   }
 	
 }

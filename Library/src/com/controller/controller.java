@@ -86,6 +86,10 @@ public class controller extends HttpServlet {
 			command = new recordBookCommand();
 			command.execute(request, response);
 			viewPage ="viewrecord.jsp";
+		}else if(com.equals("/deletebook.do")) {
+			command = new deleteBookCommand();
+			command.execute(request, response);
+			viewPage = "check_delete.jsp";
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);

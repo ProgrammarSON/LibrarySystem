@@ -35,6 +35,9 @@
 	      <li class="nav-item mr-auto">
 	        <a class="nav-link" href="recordbook.jsp">도서 기록</a>
 	      </li>
+	         <li class="nav-item mr-auto">
+	        <a class="nav-link" href="deletebook.jsp">도서 삭제</a>
+	      </li>	      
 	      </ul>
 	      <% if(session.getAttribute("ValidMem") != null){ %>
 		      <button class="btn btn-outline-success mr-2" onclick="location.href='member/modifymember.jsp'">회원정보 수정</button>
