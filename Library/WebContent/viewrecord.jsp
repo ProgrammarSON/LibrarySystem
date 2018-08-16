@@ -44,9 +44,9 @@ String opt = (String)request.getAttribute("opt");
          <option value="writer DESC">저자(ㅎ부터)</option>
          <option value="publisher">출판사(ㄱ부터)</option>
          <option value="publisher DESC">출판사(ㅎ부터)</option>
-     <!--     <option value="rental">상태(ㄱ부터)</option>
-         <option value="return">상태(ㅎ부터)</option>
-      --> </select>
+     <!--<option value="rental">상태(ㄱ부터)</option>
+         <option value="return">상태(ㅎ부터)</option>-->
+     </select>
       	&nbsp;
       	<input type="submit" class="btn btn-success" value="검색">
 </div>      
