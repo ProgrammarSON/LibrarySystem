@@ -2,14 +2,14 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp"/>
 	
-<%
-	if(session.getAttribute("ValidMem") == null){
+<% 
+	String member = (String)session.getAttribute("id");	
+	if(!member.equals("admin")){
 %>
 	<script language="javascript">
-		alert("로그인 해주세요.");
+		alert("관리자로 로그인 해주세요.");
 		document.location.href="index.jsp";
 	</script>
-	
 <%} %>
 	
 <div class="layer">

@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+nav {
+   z-index: 9999;
+}
 
 .layer{
 	position:absolute;

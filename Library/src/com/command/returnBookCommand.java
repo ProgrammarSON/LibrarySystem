@@ -13,8 +13,9 @@ public class returnBookCommand implements Command{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		String bid = request.getParameter("bid");
+		String member =request.getParameter("member");
 		bookDAO dao = bookDAO.getInstance();
-		int state = dao.returnBook(bid);
+		int state = dao.returnBook(bid,member);
 		
 		request.setAttribute("state",state);
 	}	

@@ -7,7 +7,7 @@
 
 <%
 int startpage = (int)request.getAttribute("startpage");
-int totalpage = (int)request.getAttribute("totalpage");;
+int totalpage = (int)request.getAttribute("totalpage");
 int endpage = (int)request.getAttribute("endpage");
 String keyword = request.getParameter("search");
 String opt = request.getParameter("opt");

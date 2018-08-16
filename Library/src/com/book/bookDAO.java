@@ -130,19 +130,20 @@ public class bookDAO {
 		return list;
 	}
 	
-	public int returnBook(String id) {
+	public int returnBook(String id, String member) {
 		
 		Connection conn = null;
 		CallableStatement cstmt = null;
 		int check=0;
 		try {
 			conn = getConnection();		
-			cstmt = conn.prepareCall("{call return_proc(?,?)}");
+			cstmt = conn.prepareCall("{call return_proc(?,?,?)}");
 			cstmt.setString(1, id);
-			cstmt.registerOutParameter(2, java.sql.Types.INTEGER);
+			cstmt.setString(2, member);
+			cstmt.registerOutParameter(3, java.sql.Types.INTEGER);
 			
 			int cnt = cstmt.executeUpdate();
-			check = cstmt.getInt(2);
+			check = cstmt.getInt(3);
 			
 			if(check == 0) System.out.println("No Data");
 			else System.out.println("Success");
@@ -162,19 +163,20 @@ public class bookDAO {
 		return check;
 	}
 	
-	public int rentalBook(String id) {
+	public int rentalBook(String id,String member) {
 		
 		Connection conn = null;
 		CallableStatement cstmt=null;
 		int check = 0;
 		try {
 			conn = getConnection();		
-			cstmt = conn.prepareCall("{call rental_proc(?,?)}");
+			cstmt = conn.prepareCall("{call rental_proc(?,?,?)}");
 			cstmt.setString(1, id);
-			cstmt.registerOutParameter(2, java.sql.Types.INTEGER);
+			cstmt.setString(2, member);
+			cstmt.registerOutParameter(3, java.sql.Types.INTEGER);
 			
 			int cnt = cstmt.executeUpdate();
-			check = cstmt.getInt(2);
+			check = cstmt.getInt(3);
 			
 			if(check < 0) System.out.println("No Data");
 			else System.out.println("Success");
@@ -228,7 +230,7 @@ public class bookDAO {
 		return check;
 	}
 	
-	   public List<bookDTO>getRecord(int page) {
+	   public List<bookDTO>getRecord(int page, String opt) {
 		      List<bookDTO> list = new ArrayList<>();
 		      bookDTO dto = null;
 		      Connection conn = null;
@@ -254,14 +256,15 @@ public class bookDAO {
 		            dto.setPublisher(" ");
 		            dto.setState(" ");
 		            dto.setDate(" ");
+		            dto.setMember(" ");
 		            list.add(dto);
 		            dto.setTotalpage(1);
 		            list.add(dto);
 		         }else {
 		            sql= "SELECT * "+ 
-		                  "FROM (SELECT rownum AS rank,bid,bname, writer, publisher,state, bdate "+
-		                  "FROM ("+"SELECT rownum, bid, bname, writer, publisher, state, bdate "
-		                        +"FROM record WHERE rownum <="+ total + " ORDER BY bdate DESC)) "
+		                  "FROM (SELECT rownum AS rank,bid,bname, writer, publisher,state, bdate,user_member "+
+		                  "FROM ("+"SELECT rownum, bid, bname, writer, publisher, state, bdate,user_member "
+		                        +"FROM record WHERE rownum <="+ total + " ORDER BY "+opt+")) "
 		                  +"WHERE rank between " + Integer.toString(page-9) + " AND "+page;
 		            System.out.println(sql);
 		            pstmt = conn.prepareStatement(sql);
@@ -275,6 +278,7 @@ public class bookDAO {
 		               dto.setPublisher(rs.getString("publisher"));
 		               dto.setState(rs.getString("state"));
 		               dto.setDate(rs.getString("bdate"));
+		               dto.setMember(rs.getString("user_member"));
 		               list.add(dto);
 		            }
 		            dto.setTotalpage(Integer.parseInt(total));

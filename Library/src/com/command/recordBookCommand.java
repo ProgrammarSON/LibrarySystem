@@ -14,11 +14,17 @@ public class recordBookCommand implements Command{
       bookDAO dao = bookDAO.getInstance();
       int page,totalpage,startpage,endpage;
       String temp = request.getParameter("page");
+      String member = request.getParameter("member");
+      String opt = request.getParameter("opt");
       
+      if(opt == null)
+      {
+    	  opt = "bdate DESC";
+      }
       if(temp == null) page = 1;
       else page = Integer.parseInt(temp);
       
-      List<bookDTO> list = dao.getRecord(page*10);
+      List<bookDTO> list = dao.getRecord(page*10,opt);
       
        
       int size = list.size()-1;
@@ -37,5 +43,6 @@ public class recordBookCommand implements Command{
       request.setAttribute("startpage", startpage);
       request.setAttribute("totalpage", totalpage);
       request.setAttribute("endpage", endpage);
+      request.setAttribute("opt",opt);
    }
 }

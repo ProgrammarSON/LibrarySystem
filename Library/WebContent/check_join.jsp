@@ -18,7 +18,6 @@
 <%
 		} else {
 			if(insert_state == memberDAO.MEMBER_JOIN_SUCCESS) {
-				session.setAttribute("id", id);
 %>
 			<script language="javascript">
 				alert("회원가입을 축하 합니다.");

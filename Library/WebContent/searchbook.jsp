@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp"/>
-
 <%
-	if(session.getAttribute("ValidMem") == null){
+	if(session.getAttribute("ValidMem") == null)
+	{
 %>
 	<script language="javascript">
 		alert("로그인 해주세요.");
 		document.location.href="index.jsp";
 	</script>
-	
-<%} %>
+<%	}%>
 
 <div class="layer">
 	<form action="searchbook.do" method="post">
