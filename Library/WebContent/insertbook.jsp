@@ -54,14 +54,7 @@
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="60" name="comments"></textarea>
   </div>
   
-  
-<!-- 	<div class="custom-file">
-       	<label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-    	<div class="invalid-feedback">Example invalid custom file feedback</div>
-  	</div>
-  	
-   	<input type="file" name="fileFolder" id="fileFolder" value="File Upload" > -->
-	<br>
+ 	<br>
 	<button type="submit" class="btn btn-success">입력하기</button>
 	<button type="reset" class="btn btn-secondary">다시 작성</button>
 	<button type="button" class="btn btn-danger" onclick="document.location.href='main.jsp'">취소</button> 

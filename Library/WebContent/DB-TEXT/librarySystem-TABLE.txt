@@ -27,3 +27,13 @@
 	"BDATE" DATE, 
 	"USER_MEMBER" VARCHAR2(50 BYTE)
    )
+   
+   
+ CREATE TABLE boards(
+  id NUMBER,
+  title VARCHAR2(100),
+  writer VARCHAR2(100),
+  pdate DATE,  
+  hits NUMBER,
+  comments VARCHAR2(4000)
+);

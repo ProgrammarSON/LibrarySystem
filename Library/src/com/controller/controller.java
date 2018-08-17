@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.command.*;
+import com.board.*;
 
 import java.io.IOException;
 
@@ -90,6 +91,10 @@ public class controller extends HttpServlet {
 			command = new deleteBookCommand();
 			command.execute(request, response);
 			viewPage = "check_delete.jsp";
+		}else if(com.equals("/writeboard.do")) {
+			command = new insertBoardCommand();
+			command.execute(request, response);
+			viewPage = "check_writeboard.jsp";
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);

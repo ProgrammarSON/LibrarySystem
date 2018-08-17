@@ -12,7 +12,5 @@ public class deleteBookCommand implements Command{
 		bookDAO dao = bookDAO.getInstance();
 		int state = dao.deleteBook(id);
 		request.setAttribute("state", state);
-	}
-	
-	
+	}	
 }
