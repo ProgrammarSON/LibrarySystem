@@ -11,13 +11,13 @@
 %>
 	<script language="javascript">
 		alert("게시물 작성완료");
-		document.location.href="./main.jsp";
+		document.location.href="./viewboardlist.do";
 	</script>
 <%
 	}else {
 %>
 	<script language="javascript">
-		alert("해당 도서관 책이 아닙니다.");
+		alert("작성 실패.");
 		document.location.href="./main.jsp";
 	</script>
 

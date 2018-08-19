@@ -1,32 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.board.*" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp"/>
 <%
-	if(session.getAttribute("ValidMem") == null)
-	{
+	String id = request.getParameter("id");
+	boardDAO dao = boardDAO.getInstance();
+	boardDTO dto = dao.getBoard(id);
 %>
-	<script language="javascript">
-		alert("로그인 해주세요.");
-		//history.go(-1);
-	</script>
-<%	}%>
-<div>
-	<table>
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>글쓴이</th>
-			<th>작성일</th>
-			<th>조회</th>
-		</tr>
-				
-	</table>
-</div><br>
-
-<div>
-	<form>
-		<button type="button" class="btn btn-danger" onclick="document.location.href='writeboard.jsp'">글쓰기</button> 
-	</form>
+<div class="layer">
+<form> <!--  enctype="multipart/form-data">-->
+  <div class="form-group">
+    <label for="exampleFormControlInput1">제목</label>
+    <input type="text" class="form-control" name="bname" value="<%=dto.getTitle() %>">
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">조회수</label>
+    <input type="text" class="form-control" name="writer" value="<%=dto.getHits() %>">
+  </div>
+     
+  
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">내용</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" cols="60" name="comments"><%=dto.getComments()%></textarea>
+  </div>
+  
+ 	<br>
+	<!-- <button type="button" class="btn btn-danger" onclick="location.href='viewboardlist.do?'">돌아가기 </button>-->
+	<!-- <button type="button" class="btn btn-danger" onclick="opener.location.reload()">돌아가기 </button>-->
+	<button type="button" class="btn btn-danger" onclick="history.back()">돌아가기 </button>
+</form>
+	
 </div>
-
-
 <jsp:include page="footer.jsp"/>

@@ -7,7 +7,14 @@ public class boardDTO {
 	String pdate;
 	String hits;
 	String comments;
+	int totalpage;
 	
+	public int getTotalpage() {
+		return totalpage;
+	}
+	public void setTotalpage(int totalpage) {
+		this.totalpage = totalpage;
+	}
 	public String getComments() {
 		return comments;
 	}

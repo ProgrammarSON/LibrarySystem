@@ -12,7 +12,7 @@ public class bookDTO {
 	String state;
 	String date;
 	String member;
-	
+	int totalpage;
 	
 	public String getMember() {
 		return member;
@@ -20,7 +20,7 @@ public class bookDTO {
 	public void setMember(String member) {
 		this.member = member;
 	}
-	int totalpage;
+	
 	
 	public String getDate() {
 		return date;

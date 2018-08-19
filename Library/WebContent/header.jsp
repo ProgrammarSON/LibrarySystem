@@ -26,8 +26,9 @@
 	        <a class="nav-link" href="searchbook.jsp">도서 검색</a>
 	      </li>
 	       <li class="nav-item">
-	        <a class="nav-link" href="writeboard.jsp">게시물 작성(임시)</a>
-	      </li>		      
+	        <a class="nav-link" href="viewboardlist.do">게시판</a>
+	      </li>		
+	      	      
 	   <%if(member != null){ 
 	   		if(member.equals("admin")){
 	   %> 

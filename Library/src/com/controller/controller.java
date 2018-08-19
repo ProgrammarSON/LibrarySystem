@@ -95,6 +95,10 @@ public class controller extends HttpServlet {
 			command = new insertBoardCommand();
 			command.execute(request, response);
 			viewPage = "check_writeboard.jsp";
+		}else if(com.equals("/viewboardlist.do")) {
+			command = new viewListBoardCommand();
+			command.execute(request, response);
+			viewPage = "viewboardlist.jsp";
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);
